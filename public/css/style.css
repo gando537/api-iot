@@ -1,5 +1,5 @@
 body {
-    background-color: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(42, 41, 41, 0.057);
 }
 
 table {
@@ -14,7 +14,7 @@ table td {
 }
     
 table th {
-    background-color: #303E8C!important;
+    background-color: #3c8c30!important;
     color: #fff;
 }
 
@@ -23,7 +23,7 @@ img {
 }
 
 .navbar {
-    background-color: #303E8C !important;
+    background-color: #3c8c30 !important;
 }
 
 hr {
@@ -32,12 +32,12 @@ hr {
 
 i {
     font-size: 30px;
-    color: #303E8C;
+    color: #3c8c30;
 }
 
 a {
     text-decoration: none;
-    color: #303E8C;
+    color: #3c8c30;
 }
 
 table {
@@ -61,11 +61,11 @@ table td {
 
 .custom-card i {
     font-size: 30px;
-    color: #3F61A6;
+    color: #3c8c30;
 }
 
 .btn-primary {
-    background-color: #3F61A6 !important;
+    background-color: #3c8c30 !important;
     --bs-btn-border-color: none !important;
 }
 .btn-primary:hover {
