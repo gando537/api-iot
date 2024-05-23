@@ -1,8 +1,8 @@
 var path = require('path');
 var index = require('./routes/index');
 var router = require('./routes/routes');
-var mqttClient = require('./routes/mqtt');
-var mqttClientUser = require('./routes/mqtt');
+var mqttClient = require('./routes/mqttClient');
+var mqttClientUser = require('./routes/mqttClientUser');
 const express = require('express');
 
 const app = express();
