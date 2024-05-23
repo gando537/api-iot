@@ -80,4 +80,4 @@ mqttClientUser.on('message', (topic, message) => {
     console.log('Users:', users);
 });
 
-module.exports = { router, pools, users, mqttClientControlESP};
+module.exports = { router, pools, users, mqttClientControlESP, mqttClient, mqttClientUser};
