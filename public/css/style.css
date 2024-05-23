@@ -22,12 +22,24 @@ img {
     pointer-events: none;
 }
 
+h1 {
+    color: #3c8c30;
+}
+
+h2 {
+    color: #3c8c30;
+}
+
+h3 {
+    color: #fff!important;
+}
+
 .navbar {
     background-color: #3c8c30 !important;
 }
 
 hr {
-    border: #111 solid 1px;
+    border: #f5f0f0 solid 1px;
 }
 
 i {
@@ -41,7 +53,7 @@ a {
 }
 
 table {
-    color: #444 !important;
+    color: #f8f6f6f4 !important;
 }
 
 table td {
