@@ -33,7 +33,7 @@ app.post('/insert', async (req, res) => {
   try {
     const client = await MongoClient.connect('mongodb+srv://MIAGE-IOT_DEV:TP_IOT_MDP_CLUSTER@cluster0.8dbefzy.mongodb.net/?retryWrites=true&w=majority');
     const db = client.db('WaterBnB');
-	
+
     const collection = db.collection('request');
     const result = await collection.insertOne(req.body);
 

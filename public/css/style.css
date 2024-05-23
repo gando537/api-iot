@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(42, 41, 41, 0.057);
+    background-color: #2e2c2cfb!important;
 }
 
 table {
@@ -69,7 +69,7 @@ table td {
     --bs-btn-border-color: none !important;
 }
 .btn-primary:hover {
-    background-color: #303E8C !important;
+    background-color: #f0f0f0  !important;
 }
 
 .navbar a {

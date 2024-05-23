@@ -70,7 +70,7 @@
                     </tbody>
                 </table>
             </div>
-        
+
             <div id="right-side" class="col-lg-6 col-12 order-lg-2 d-flex align-items-top justify-content-center">
                 <div id="user_map"></div>
             </div>
@@ -94,13 +94,13 @@
         mapUser.setZoom(8);
 
         let marker;
-        
+
         // Retrieve data from the server
         fetch('/get')
         .then(response => response.json())
         .then(data => {
             // Initialize DataTable with the data
-            try {    
+            try {
                 const dataTable = new DataTable('#all-data-table', {
                 data: data,
                 columns: [
@@ -120,7 +120,7 @@
         .then(response => response.json())
         .then(data => {
             // Initialize DataTable with the data
-            try {  
+            try {
                 const dataTable = new DataTable('#pool-data-table', {
                     data: data,
                     columns: [
@@ -128,7 +128,7 @@
                         { data: 'temperature' },
                     ],
                     searching: false,
-                    lengthChange: false,  
+                    lengthChange: false,
             }   );
             } catch (error) {
                 throw error;
@@ -189,7 +189,7 @@
                         { data: 'lon' },
                     ],
                     searching: false,
-                    lengthChange: false,  
+                    lengthChange: false,
                 });
 
                 data.forEach(user => {
