@@ -31,7 +31,7 @@ app.use('/', index);
 app.post('/insert', async (req, res) => {
   console.log("insert");
   try {
-    const client = await MongoClient.connect('mongodb+srv://MIAGE-IOT_DEV:TP_IOT_MDP_CLUSTER@cluster0.8dbefzy.mongodb.net/?retryWrites=true&w=majority');
+    const client = await MongoClient.connect('mongodb+srv://gandohd:cdatltrnwbrTGCP9@cluster1.dupmfaf.mongodb.net/?retryWrites=true&w=majority');
     const db = client.db('WaterBnB');
 
     const collection = db.collection('request');
