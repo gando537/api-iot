@@ -1,4 +1,3 @@
-import { pools } from '../services/services.js';
 const mqtt = require('mqtt');
 
 const pools = [];
