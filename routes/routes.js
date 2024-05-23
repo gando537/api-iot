@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const { MongoClient } = require('mongodb');
-const { users, pools, mqttClientControlESP } = require('./mqtt');
+
+const mqtt = require('mqtt');
+const mqttClientControlESP = mqtt.connect('mqtt://mqtt.eclipseprojects.io');
 
 const url = 'mongodb+srv://gandohd:cdatltrnwbrTGCP9@cluster1.dupmfaf.mongodb.net/?retryWrites=true&w=majority';
 
@@ -89,4 +91,4 @@ router.get('/open', async (req, res) => {
     }
 });
 
-module.exports = { router, pools, users };
+module.exports = router;
