@@ -1,8 +1,8 @@
 {
-  "name": "service",
+  "name": "server-tp4-iot",
   "version": "1.0.0",
   "description": "api pour le tp4 d'iot",
-  "main": "service.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
