@@ -80,30 +80,4 @@ mqttClientUser.on('message', (topic, message) => {
     console.log('Users:', users);
 });
 
-// GET, Ouvre le porte
-app.get('/open', async (req, res) => {
-    try {
-        const espIdent = req.query.espIdent;
-        const idEtudiant = req.query.idEtudiant;
-        // current timestamp in milliseconds
-        let ts = Date.now();
-
-        let date_ob = new Date(ts);
-        let date = date_ob.getDate();
-        let month = date_ob.getMonth() + 1;
-        let year = date_ob.getFullYear();
-
-        // prints date & time in YYYY-MM-DD format
-        let date_full = year + "-" + month + "-" + date;
-
-        console.log('MQTT PREPARE SEND OPEN to uca/iot/open/' + espIdent);
-        mqttClientControlESP.publish('uca/iot/open/' + espIdent, '{"openDoor": "yes", "idEtudiant" : ' + idEtudiant + ', "date" : "' + date_full + '"}');
-        console.log('MQTT SEND OPEN to uca/iot/open/' + espIdent);
-        res.status(200).json("{message: 'Envoi d'ouverture effectue', espconcerne: '" + espIdent + "', topicconcerne: 'uca/iot/open/" + espIdent + ', "date" : ' + date_full + "'}");
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
-
-module.exports = { router, pools, users};
+module.exports = { router, pools, users, mqttClientControlESP};
