@@ -1,8 +1,6 @@
 var path = require('path');
 var index = require('./routes/index');
 var router = require('./routes/routes');
-var mqttClient = require('./routes/mqttClient');
-var mqttClientUser = require('./routes/mqttClientUser');
 const express = require('express');
 
 const app = express();
@@ -22,8 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Utiliser les routes
 app.use('/', index);
 app.use('/routes', router);
-app.use('/routes', mqttClient);
-app.use('/routes', mqttClientUser);
 
 // Lancement du serveur ---------------------------------------------------------------------
 app.listen(port, () => {

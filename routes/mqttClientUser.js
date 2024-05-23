@@ -1,6 +1,6 @@
 const mqtt = require('mqtt');
 const mqttClientUser = mqtt.connect('mqtt://mqtt.eclipseprojects.io');
-import { users } from '../services/services';
+const users = [];
 
 // Suscribe au topic /uca/waterbnb/# pour récupérer la liste des utilisateurs
 mqttClientUser.on('connect', () => {
@@ -31,4 +31,4 @@ mqttClientUser.on('message', (topic, message) => {
     console.log('Users:', users);
 });
 
-module.exports = mqttClientUser;
+module.exports = { mqttClientUser, users}

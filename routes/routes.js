@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { MongoClient } = require('mongodb');
+const { users } = require('./mqttClientUser');
+const { pools } = require('./mqttClient');
 
 const mqtt = require('mqtt');
 const mqttClientControlESP = mqtt.connect('mqtt://mqtt.eclipseprojects.io');

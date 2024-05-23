@@ -1,6 +1,8 @@
 import { pools } from '../services/services.js';
 const mqtt = require('mqtt');
 
+const pools = [];
+
 const mqttClient = mqtt.connect('mqtt://test.mosquitto.org');
 
 // Suscribe au topic /uca/iot/piscine pour récupérer la liste des piscines
@@ -43,4 +45,4 @@ mqttClient.on('message', (topic, message) => {
     console.log('Pools:', pools);
 });
 
-module.exports = mqttClient;
+module.exports = { mqttClient, pools }
