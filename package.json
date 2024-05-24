@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "guo-hakobyan",
+  "author": "Mouhamed Gando Diallo",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
