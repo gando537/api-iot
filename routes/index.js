@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const { users } = require('../services/mqttClientUser');
-const { pools } = require('../services/mqttClient');
+const { users } = require('./mqttClientUser');
+const { pools } = require('./mqttClient');
 
 // GET Home page
 router.get('/', function(req, res, next) {
