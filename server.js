@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Utiliser les routes
 app.use('/', index);
-app.use('/routes', router);
+app.use('/', router);
 
 // Lancement du serveur ---------------------------------------------------------------------
 app.listen(port, () => {
