@@ -16,7 +16,7 @@ router.post('/insert', async (req, res) => {
         const client = await MongoClient.connect(url);
         const db = client.db('WaterBnB');
 
-        const collection = db.collection('request');
+        const collection = db.collection('access');
         const result = await collection.insertOne(req.body);
 
         client.close();
@@ -34,7 +34,7 @@ router.get('/get', async (req, res) => {
         const client = await MongoClient.connect(url);
         const db = client.db('WaterBnB');
 
-        const collection = db.collection('request');
+        const collection = db.collection('access');
         const documents = await collection.find().toArray();
 
         client.close();
