@@ -130,7 +130,9 @@
 
         fetchData('/pools', '#pool-data-table', [
             { data: 'ident' },
-            { data: 'temperature' }
+            { data: 'temperature' },
+            { data: 'lat' },
+            { data: 'lon' }
         ], map, pool => {
             const colorIcons = {
                 Grey: "abcdef",
