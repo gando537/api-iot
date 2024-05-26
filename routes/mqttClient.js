@@ -21,16 +21,15 @@ mqttClient.on('message', (topic, message) => {
 
     const ident = jsonMessage.info.ident;
     let temperature;
-    if (jsonMessage.status.temperature != null) {
-        temperature = jsonMessage.status.temperature;
-    } else {
-        temperature = jsonMessage.temperature;
-    }
-    const lat = jsonMessage.info.loc.lat;
-    const lon = jsonMessage.info.loc.lon;
-    let color = "battery-full";
+    temperature = jsonMessage.status.temperature;
+    const lat = jsonMessage.location.gps.lat;
+    const lon = jsonMessage.location.gps.lon;
     if (jsonMessage.hasOwnProperty("piscine")) {
-        color = jsonMessage.piscine.led;
+        if (jsonMessage.piscine.occuped === true) {
+            color = 'red';
+        } else {
+            color = 'blue';
+        }
     }
 
     const existingItemIndex = pools.findIndex(item => item.ident === ident);

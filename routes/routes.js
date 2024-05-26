@@ -8,15 +8,19 @@ const mqtt = require('mqtt');
 const mqttClientControlESP = mqtt.connect('mqtt://mqtt.eclipseprojects.io');
 
 const url = 'mongodb+srv://gandohd:cdatltrnwbrTGCP9@cluster1.dupmfaf.mongodb.net/?retryWrites=true&w=majority';
+
+function getdb(collection) {
+    const client = MongoClient.connect(url);
+    const db = client.db('WaterBnB');
+    const collection = db.collection(collection);
+    return collection;
+}
 // Requests ---------------------------------------------------------------------
 // POST, Insert dans la base de données
 router.post('/insert', async (req, res) => {
     console.log("insert");
     try {
-        const client = await MongoClient.connect(url);
-        const db = client.db('WaterBnB');
-
-        const collection = db.collection('access');
+        const collection = getdb('access');
         const result = await collection.insertOne(req.body);
 
         client.close();
@@ -31,10 +35,7 @@ router.post('/insert', async (req, res) => {
 // GET, Récupère les données de la base de données
 router.get('/get', async (req, res) => {
     try {
-        const client = await MongoClient.connect(url);
-        const db = client.db('WaterBnB');
-
-        const collection = db.collection('access');
+        const collection = getdb('access');
         const documents = await collection.find().toArray();
 
         client.close();
@@ -69,10 +70,11 @@ router.get('/users', async (req, res) => {
 // GET, Ouvre le porte
 router.get('/open', async (req, res) => {
     try {
-        const espIdent = req.query.espIdent;
-        const idEtudiant = req.query.idEtudiant;
+        const idu = req.query.idu;
+        const idswp = req.query.idswp;
         // current timestamp in milliseconds
         let ts = Date.now();
+        let granted;
 
         let date_ob = new Date(ts);
         let date = date_ob.getDate();
@@ -82,10 +84,26 @@ router.get('/open', async (req, res) => {
         // prints date & time in YYYY-MM-DD format
         let date_full = year + "-" + month + "-" + date;
 
-        console.log('MQTT PREPARE SEND OPEN to uca/iot/open/' + espIdent);
-        mqttClientControlESP.publish('uca/iot/open/' + espIdent, '{"openDoor": "yes", "idEtudiant" : ' + idEtudiant + ', "date" : "' + date_full + '"}');
-        console.log('MQTT SEND OPEN to uca/iot/open/' + espIdent);
-        res.status(200).json("{message: 'Envoi d'ouverture effectue', espconcerne: '" + espIdent + "', topicconcerne: 'uca/iot/open/" + espIdent + ', "date" : ' + date_full + "'}");
+        const collection = getdb('users');
+        if (await collection.findOne({ idu: idu }) !== null) {
+            console.log('MQTT PREPARE SEND OPEN to uca/iot/open/' + idswp);
+            mqttClientControlESP.publish('uca/iot/open/' + idswp, '{"openDoor": "yes", "idu" : ' + idu + ', "date" : "' + date_full + '"}');
+            console.log('MQTT SEND OPEN to uca/iot/open/' + idswp);
+            res.status(200).json("{message: 'Envoi d'ouverture effectue', espconcerne: '" + idswp + "', topicconcerne: 'uca/iot/open/" + idswp + ', "date" : ' + date_full + "'}");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+router.get('/publish', async (req, res) => {
+    try {
+        const request_data = req.query;
+        const topic = request_data.topic;
+        const message = request_data.message;
+        mqttClientControlESP.publish(topic, message);
+        res.status(200).json({ message: 'Message published' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

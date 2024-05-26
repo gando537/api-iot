@@ -29,6 +29,7 @@
                 </thead>
                 <tbody>
                     <!-- Data rows will be dynamically inserted here -->
+                    
                 </tbody>
             </table>
         </section>
@@ -142,7 +143,7 @@
                 : undefined;
 
             const marker = L.marker([pool.lat, pool.lon], { icon: iconUrl ? L.icon({ iconUrl, iconSize: [40, 40] }) : undefined }).addTo(map);
-            marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?espIdent=${pool.ident}&idEtudiant=${new URLSearchParams(window.location.search).get('idEtudiant')}' target='_blank'>Ouvrir</a>`).closePopup();
+            marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?idswp=${pool.ident}&idu=${new URLSearchParams(window.location.search).get('idu')}' target='_blank'>Ouvrir</a>`).closePopup();
         });
 
         fetchData('/users', '#user-data-table', [
