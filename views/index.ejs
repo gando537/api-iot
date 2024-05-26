@@ -115,16 +115,22 @@
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
-                            new DataTable(tableId, {
-                                data: data,
-                                columns: columns,
-                                searching: false,
-                                lengthChange: false,
-                            });
-                            data.forEach(markerCallback);
+                            // Check if data is an array
+                            if (Array.isArray(data)) {
+                                new DataTable(tableId, {
+                                    data: data,
+                                    columns: columns,
+                                    searching: false,
+                                    lengthChange: false,
+                                });
+                                data.forEach(markerCallback);
+                            } else {
+                                console.error("Data is not an array:", data);
+                            }
                         })
-                        .catch(error => console.error(error));
+                        .catch(error => console.error("Error fetching data:", error));
                 };
+
 
                 fetchData('/get', '#all-data-table', [
                     { data: 'pool' },
@@ -141,11 +147,11 @@
                 ], map, pool => {
                     // Détermine la couleur en fonction de la température
                     let iconColor;
-                    if (pool.temperature < 10) {
+                    if (pool.temperature < 20) {
                         iconColor = "blue";
-                    } else if (pool.temperature >= 10 && pool.temperature < 20) {
+                    } else if (pool.temperature >= 20 && pool.temperature < 25) {
                         iconColor = "green";
-                    } else if (pool.temperature >= 20 && pool.temperature < 30) {
+                    } else if (pool.temperature >= 25 && pool.temperature < 30) {
                         iconColor = "orange";
                     } else {
                         iconColor = "red";
