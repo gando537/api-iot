@@ -48,7 +48,7 @@ mqttClient.on('message', (topic, message) => {
                     color = "battery-empty";
                 }
             }
-        
+
             const existingItemIndex = pools.findIndex(item => item.ident === ident);
             if (existingItemIndex !== -1) {
                 pools[existingItemIndex] = { ident, temperature, lat, lon, color };

@@ -20,7 +20,7 @@ function getdb(collection) {
 router.post('/insert', async (req, res) => {
     console.log("insert");
     try {
-        const collection = getdb('access');
+        const collection = getdb('pools');
         const result = await collection.insertOne(req.body);
 
         client.close();
@@ -35,7 +35,7 @@ router.post('/insert', async (req, res) => {
 // GET, Récupère les données de la base de données
 router.get('/get', async (req, res) => {
     try {
-        const collection = getdb('access');
+        const collection = getdb('pools');
         const documents = await collection.find().toArray();
 
         client.close();

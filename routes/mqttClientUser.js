@@ -16,17 +16,17 @@ mqttClientUser.on('connect', () => {
 mqttClientUser.on('message', (topic, message) => {
     const jsonMessage = JSON.parse(message.toString());
 
-    const tid = jsonMessage.tid;
+    const idu = jsonMessage.idu;
     const lat = jsonMessage.lat;
     const lon = jsonMessage.lon;
 
-    const existingItemIndex = users.findIndex(item => item.tid === tid);
+    const existingItemIndex = users.findIndex(item => item.idu === idu);
     if (existingItemIndex !== -1) {
-        users[existingItemIndex] = { tid, lat, lon };
-        console.log('Ident updated:', tid);
+        users[existingItemIndex] = { idu, lat, lon };
+        console.log('Ident updated:', idu);
     } else {
         users.push({ tid, lat, lon });
-        console.log('New ident added:', tid);
+        console.log('New ident added:', idu);
     }
     console.log('Users:', users);
 });
