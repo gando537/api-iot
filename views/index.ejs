@@ -139,17 +139,20 @@
                     { data: 'lat' },
                     { data: 'lon' }
                 ], map, pool => {
-                    const colorIcons = {
-                        Grey: "grey",
-                        Brown: "brown",
-                        Green: "green",
-                        Red: "red"
-                    };
-
-                    const iconColor = colorIcons[pool.color] || "blue"; // Default to blue if color is not found
+                    // Détermine la couleur en fonction de la température
+                    let iconColor;
+                    if (pool.temperature < 10) {
+                        iconColor = "blue";
+                    } else if (pool.temperature >= 10 && pool.temperature < 20) {
+                        iconColor = "green";
+                    } else if (pool.temperature >= 20 && pool.temperature < 30) {
+                        iconColor = "orange";
+                    } else {
+                        iconColor = "red";
+                    }
 
                     const icon = L.divIcon({
-                        html: `<div style="background-color:${iconColor}; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa fa-map-marker"></i></div>`,
+                        html: `<div style="background-color:${iconColor}; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa fa-tint"></i></div>`,
                         className: 'custom-div-icon',
                         iconSize: [40, 40]
                     });
@@ -158,6 +161,7 @@
 
                     marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?idswp=${pool.ident}&idu=${new URLSearchParams(window.location.search).get('idu')}' target='_blank'>Ouvrir</a>`).closePopup();
                 });
+
 
 
                 fetchData('/users', '#user-data-table', [
