@@ -12,8 +12,8 @@ const url = 'mongodb+srv://gandohd:cdatltrnwbrTGCP9@cluster1.dupmfaf.mongodb.net
 function getdb(collection) {
     const client = MongoClient.connect(url);
     const db = client.db('WaterBnB');
-    const collection = db.collection(collection);
-    return collection;
+    const collect = db.collection(collection);
+    return collect;
 }
 // Requests ---------------------------------------------------------------------
 // POST, Insert dans la base de données
