@@ -132,12 +132,12 @@
                 };
 
 
-                // fetchData('/get', '#all-data-table', [
-                //     { data: 'pool' },
-                //     { data: 'client' },
-                //     { data: 'date' },
-                //     { data: 'request' }
-                // ], map, () => { });
+                fetchData('/get', '#all-data-table', [
+                    { data: 'pool' },
+                    { data: 'client' },
+                    { data: 'date' },
+                    { data: 'request' }
+                ], map, () => { });
 
                 fetchData('/pools', '#pool-data-table', [
                     { data: 'ident' },
@@ -168,16 +168,14 @@
                     marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?idswp=${pool.ident}&idu=${new URLSearchParams(window.location.search).get('idu')}' target='_blank'>Ouvrir</a>`).closePopup();
                 });
 
-
-
-                // fetchData('/users', '#user-data-table', [
-                //     { data: 'name' },
-                //     { data: 'lat' },
-                //     { data: 'lon' }
-                // ], mapUser, user => {
-                //     const marker = L.marker([user.lat, user.lon]).addTo(mapUser);
-                //     marker.bindPopup(`<b>${user.name}</b>`).closePopup();
-                // });
+                fetchData('/users', '#user-data-table', [
+                    { data: 'name' },
+                    { data: 'lat' },
+                    { data: 'lon' }
+                ], mapUser, user => {
+                    const marker = L.marker([user.lat, user.lon]).addTo(mapUser);
+                    marker.bindPopup(`<b>${user.name}</b>`).closePopup();
+                });
             </script>
 </body>
 
