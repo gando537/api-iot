@@ -3,7 +3,6 @@ var index = require('./routes/index');
 var router = require('./routes/routes');
 const express = require('express');
 
-connectDB();
 const app = express();
 const port = 80;
 
