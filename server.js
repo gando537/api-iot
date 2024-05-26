@@ -2,7 +2,6 @@ var path = require('path');
 var index = require('./routes/index');
 var router = require('./routes/routes');
 const express = require('express');
-const connectDB = require('./db');
 
 connectDB();
 const app = express();
