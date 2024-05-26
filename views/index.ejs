@@ -1,163 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('parts/head') %> 
-    <style>
-        .map-container {
-            height: 400px; /* Adjust the height as needed */
-            width: 100%;
-        }
-    </style>
+    <%- include('parts/head') %>
+        <style>
+            .map-container {
+                height: 400px;
+                /* Adjust the height as needed */
+                width: 100%;
+            }
+        </style>
 </head>
+
 <body>
     <%- include('parts/navbar') %>
 
-    <div class="container my-5">
-        <!-- Status Section -->
-        <section id="status" class="mb-5">
-            <div class="d-flex flex-row align-items-center mb-3">
-                <h3 class="mb-0"></h3>
-            </div>
-            <table id="all-data-table" class="table table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Pool</th>
-                        <th>Client</th>
-                        <th>Date</th>
-                        <th>Request</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data rows will be dynamically inserted here -->
-                    
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Pools List Section -->
-        <section id="pools-list" class="mb-5">
-            <div class="row">
-                <div class="col-12 d-flex flex-row align-items-center mb-3">
-                    <i class="bi bi-water me-2"></i>
-                    <h3 class="mb-0">Pools list</h3>
+        <div class="container my-5">
+            <!-- Status Section -->
+            <section id="status" class="mb-5">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <h3 class="mb-0"></h3>
                 </div>
-                <div id="left-side" class="col-lg-6 col-12 mb-4 mb-lg-0">
-                    <table id="pool-data-table" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Pool</th>
-                                <th>Temperature</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data rows will be dynamically inserted here -->
-                        </tbody>
-                    </table>
+                <table id="all-data-table" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Pool</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data rows will be dynamically inserted here -->
+
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Pools List Section -->
+            <section id="pools-list" class="mb-5">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row align-items-center mb-3">
+                        <i class="bi bi-water me-2"></i>
+                        <h3 class="mb-0">Pools list</h3>
+                    </div>
+                    <div id="left-side" class="col-lg-6 col-12 mb-4 mb-lg-0">
+                        <table id="pool-data-table" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Pool</th>
+                                    <th>Temperature</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data rows will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="right-side" class="col-lg-6 col-12">
+                        <div id="map" class="map-container"></div>
+                    </div>
                 </div>
-                <div id="right-side" class="col-lg-6 col-12">
-                    <div id="map" class="map-container"></div>
+            </section>
+
+            <!-- Users List Section -->
+            <section id="users-list">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row align-items-center mb-3">
+                        <i class="bi bi-people me-2"></i>
+                        <h3 class="mb-0">Users list</h3>
+                    </div>
+                    <div id="left-side" class="col-lg-6 col-12 mb-4 mb-lg-0">
+                        <table id="user-data-table" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data rows will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="right-side" class="col-lg-6 col-12">
+                        <div id="user_map" class="map-container"></div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <!-- Users List Section -->
-        <section id="users-list">
-            <div class="row">
-                <div class="col-12 d-flex flex-row align-items-center mb-3">
-                    <i class="bi bi-people me-2"></i>
-                    <h3 class="mb-0">Users list</h3>
-                </div>
-                <div id="left-side" class="col-lg-6 col-12 mb-4 mb-lg-0">
-                    <table id="user-data-table" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>User</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data rows will be dynamically inserted here -->
-                        </tbody>
-                    </table>
-                </div>
-                <div id="right-side" class="col-lg-6 col-12">
-                    <div id="user_map" class="map-container"></div>
-                </div>
-            </div>
-        </section>
-    </div>
+        <%- include('parts/script') %>
 
-    <%- include('parts/script') %>
+            <script>
+                $.fn.dataTable.ext.errMode = 'none';
 
-    <script>
-        $.fn.dataTable.ext.errMode = 'none';
+                // Initialize the map
+                const initMap = (mapId, coords) => {
+                    const map = L.map(mapId).setView(coords, 8);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(map);
+                    return map;
+                };
 
-        // Initialize the map
-        const initMap = (mapId, coords) => {
-            const map = L.map(mapId).setView(coords, 8);
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-            return map;
-        };
+                const map = initMap('map', [43.701129, 7.237382]);
+                const mapUser = initMap('user_map', [43.701129, 7.237382]);
 
-        const map = initMap('map', [43.701129, 7.237382]);
-        const mapUser = initMap('user_map', [43.701129, 7.237382]);
+                // Fetch and display data
+                const fetchData = (url, tableId, columns, map, markerCallback) => {
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            new DataTable(tableId, {
+                                data: data,
+                                columns: columns,
+                                searching: false,
+                                lengthChange: false,
+                            });
+                            data.forEach(markerCallback);
+                        })
+                        .catch(error => console.error(error));
+                };
 
-        // Fetch and display data
-        const fetchData = (url, tableId, columns, map, markerCallback) => {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    new DataTable(tableId, {
-                        data: data,
-                        columns: columns,
-                        searching: false,
-                        lengthChange: false,
+                fetchData('/get', '#all-data-table', [
+                    { data: 'pool' },
+                    { data: 'client' },
+                    { data: 'date' },
+                    { data: 'request' }
+                ], map, () => { });
+
+                fetchData('/pools', '#pool-data-table', [
+                    { data: 'ident' },
+                    { data: 'temperature' },
+                    { data: 'lat' },
+                    { data: 'lon' }
+                ], map, pool => {
+                    const colorIcons = {
+                        Grey: "grey",
+                        Brown: "brown",
+                        Green: "green",
+                        Red: "red"
+                    };
+
+                    const iconColor = colorIcons[pool.color] || "blue"; // Default to blue if color is not found
+
+                    const icon = L.divIcon({
+                        html: `<div style="background-color:${iconColor}; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa fa-map-marker"></i></div>`,
+                        className: 'custom-div-icon',
+                        iconSize: [40, 40]
                     });
-                    data.forEach(markerCallback);
-                })
-                .catch(error => console.error(error));
-        };
 
-        fetchData('/get', '#all-data-table', [
-            { data: 'pool' },
-            { data: 'client' },
-            { data: 'date' },
-            { data: 'request' }
-        ], map, () => {});
+                    const marker = L.marker([pool.lat, pool.lon], { icon: icon }).addTo(map);
 
-        fetchData('/pools', '#pool-data-table', [
-            { data: 'ident' },
-            { data: 'temperature' },
-            { data: 'lat' },
-            { data: 'lon' }
-        ], map, pool => {
-            const colorIcons = {
-                Grey: "abcdef",
-                Brown: "abcdef",
-                Green: "2ecc71",
-                Red: "e85141"
-            };
-            const iconUrl = colorIcons[pool.color] 
-                ? `https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colorIcons[pool.color]}&chf=a,s,ee00FFFF`
-                : undefined;
+                    marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?idswp=${pool.ident}&idu=${new URLSearchParams(window.location.search).get('idu')}' target='_blank'>Ouvrir</a>`).closePopup();
+                });
 
-            const marker = L.marker([pool.lat, pool.lon], { icon: iconUrl ? L.icon({ iconUrl, iconSize: [40, 40] }) : undefined }).addTo(map);
-            marker.bindPopup(`<b>${pool.ident}</b><br>Water temperature: ${pool.temperature}°C<br>Open Door: <a href='/open?idswp=${pool.ident}&idu=${new URLSearchParams(window.location.search).get('idu')}' target='_blank'>Ouvrir</a>`).closePopup();
-        });
 
-        fetchData('/users', '#user-data-table', [
-            { data: 'tid' },
-            { data: 'lat' },
-            { data: 'lon' }
-        ], mapUser, user => {
-            const marker = L.marker([user.lat, user.lon]).addTo(mapUser);
-            marker.bindPopup(`<b>${user.tid}</b><br>Position: [${user.lat}, ${user.lon}]`).closePopup();
-        });
-    </script>
+                fetchData('/users', '#user-data-table', [
+                    { data: 'name' },
+                    { data: 'lat' },
+                    { data: 'lon' }
+                ], mapUser, user => {
+                    const marker = L.marker([user.lat, user.lon]).addTo(mapUser);
+                    marker.bindPopup(`<b>${user.name}</b>`).closePopup();
+                });
+            </script>
 </body>
+
 </html>
