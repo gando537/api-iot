@@ -24,11 +24,10 @@ mqttClient.on('message', (topic, message) => {
     temperature = jsonMessage.status.temperature;
     const lat = jsonMessage.location.gps.lat;
     const lon = jsonMessage.location.gps.lon;
+    let color = "battery-full";
     if (jsonMessage.hasOwnProperty("piscine")) {
-        if (jsonMessage.piscine.occuped === true) {
-            color = 'red';
-        } else {
-            color = 'blue';
+        if (jsonMessage.piscine.occuped === false) {
+            color = "battery-empty";
         }
     }
 
