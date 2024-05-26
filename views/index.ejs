@@ -47,6 +47,8 @@
                             <tr>
                                 <th>Pool</th>
                                 <th>Temperature</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -141,7 +143,7 @@
                 Red: "e85141"
             };
             const iconUrl = colorIcons[pool.color] 
-                ? `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colorIcons[pool.color]}&chf=a,s,ee00FFFF`
+                ? `https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colorIcons[pool.color]}&chf=a,s,ee00FFFF`
                 : undefined;
 
             const marker = L.marker([pool.lat, pool.lon], { icon: iconUrl ? L.icon({ iconUrl, iconSize: [40, 40] }) : undefined }).addTo(map);
